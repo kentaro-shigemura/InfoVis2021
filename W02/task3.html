@@ -7,7 +7,7 @@
 </head>
 <body>
   <form name="keisan">
-  OŠpŒ`‚Ì–ÊÏŒvZD3‚Â‚ÌÀ•\‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢D<br>
+  ï¿½Oï¿½pï¿½`ï¿½Ì–ÊÏŒvï¿½Zï¿½D3ï¿½Â‚Ìï¿½ï¿½\ï¿½ï¿½ï¿½wï¿½è‚µï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½D<br>
 x0<input type="text" value="0">y0
   <input type="text" value="0">z0
   <input type="text" value="0"><br>
@@ -17,7 +17,7 @@ x0<input type="text" value="0">y0
     x2<input type="text" value="0">y2
       <input type="text" value="0">z2
       <input type="text" value="0"><br>
-  <input type="button" value="ŒvZ" onclick="menseki()">
+  <input type="button" value="ï¿½vï¿½Z" onclick="menseki()">
   </form>
 
 <script src="vec3.js"></script>
@@ -27,18 +27,18 @@ function menseki()
   var v1 = new Vec3( parseInt(document.keisan.elements[0].value), parseInt(document.keisan.elements[1].value), parseInt(document.keisan.elements[2].value) );
   var v2 = new Vec3( parseInt(document.keisan.elements[3].value), parseInt(document.keisan.elements[4].value), parseInt(document.keisan.elements[5].value) );
   var v3 = new Vec3( parseInt(document.keisan.elements[6].value), parseInt(document.keisan.elements[7].value), parseInt(document.keisan.elements[8].value) );
-  var v4 = new Vec3( 0, 0, 0 );//ŒvZ—p1
-  var v5 = new Vec3( 0, 0, 0 );//ŒvZ—p2
-  var v6 = new Vec3( 0, 0, 0 );//ŒvZ—p3
-  var v12 = v2.sub( v1 );//ƒxƒNƒgƒ‹
-  var v13 = v3.sub( v1 );//ƒxƒNƒgƒ‹
+  var v4 = new Vec3( 0, 0, 0 );//ï¿½vï¿½Zï¿½p1
+  var v5 = new Vec3( 0, 0, 0 );//ï¿½vï¿½Zï¿½p2
+  var v6 = new Vec3( 0, 0, 0 );//ï¿½vï¿½Zï¿½p3
+  var v12 = v2.sub( v1 );//ï¿½xï¿½Nï¿½gï¿½ï¿½
+  var v13 = v3.sub( v1 );//ï¿½xï¿½Nï¿½gï¿½ï¿½
 
-  var v12_13 = v4.mul( v12, v13 );//Še—v‘f‚Ç‚¤‚µ‚ÌŠ|‚¯Z¨ŒvZ—p1‚ÉŠi”[
-  var v12_2 = v5.squ( v12 );//Še—v‘f“ñæ¨ŒvZ—p2‚ÉŠi”[
-  var v13_2 = v6.squ( v13 );//Še—v‘f“ñæ¨ŒvZ—p3‚ÉŠi”[
+  var v12_13 = v4.mul( v12, v13 );//ï¿½eï¿½vï¿½fï¿½Ç‚ï¿½ï¿½ï¿½ï¿½ÌŠ|ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½vï¿½Zï¿½p1ï¿½ÉŠiï¿½[
+  var v12_2 = v5.squ( v12 );//ï¿½eï¿½vï¿½fï¿½ï¿½ï¿½æ¨ï¿½vï¿½Zï¿½p2ï¿½ÉŠiï¿½[
+  var v13_2 = v6.squ( v13 );//ï¿½eï¿½vï¿½fï¿½ï¿½ï¿½æ¨ï¿½vï¿½Zï¿½p3ï¿½ÉŠiï¿½[
   var s_2 = v12_2.sum() * v13_2.sum() - Math.pow(v12_13.sum(),2)
   var s = Math.sqrt(s_2) / 2
-  alert("–ÊÏ‚Í" + s);
+  alert("ï¿½ÊÏ‚ï¿½" + s);
 }
 </script>
 
