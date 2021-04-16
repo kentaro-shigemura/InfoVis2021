@@ -8,7 +8,8 @@
 <body>
 
   <form name="keisan">
-Triangle area calculation. Please specify three seats.計算<br>
+Triangle area calculation. Please specify three seats.<br>
+x0<input type="text" value="0">y0
   <input type="text" value="0">z0
   <input type="text" value="0"><br>
   x1<input type="text" value="0">y1
@@ -38,7 +39,7 @@ function menseki()
   var v13_2 = v6.squ( v13 );//各要素の二乗
   var s_2 = v12_2.sum() * v13_2.sum() - Math.pow(v12_13.sum(),2)
   var s = Math.sqrt(s_2) / 2
-  alert("Area of Triangle　is " + s);
+  alert("Area of Triang　is " + s);
 }
 </script>
 
