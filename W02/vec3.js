@@ -1,107 +1,109 @@
-// Constructor
-Vec3 = function( x, y, z )
+class Vec3
 {
+  // Constructor
+  constructor( x, y, z )
+  {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+  }
 
-  this.x = x;
-  this.y = y;
-  this.z = z;
+  // Add method
+  add( v )
+  {
 
-}
+    this.x += v.x;
+    this.y += v.y;
+    this.z += v.z;
+    return this;
 
-// Add method
-Vec3.prototype.add = function( v )
-{
+  }
+  // Hikizan(subtraction) method
+  sub( v )
+  {
 
-  this.x += v.x;
-  this.y += v.y;
-  this.z += v.z;
-  return this;
+    this.x -= v.x;
+    this.y -= v.y;
+    this.z -= v.z;
+    return this;
 
-}
-// Hikizan(subtraction) method
-Vec3.prototype.sub = function( v )
-{
+  }
+  // Kakezan(multiplication) method
+  mul( v1, v2 )
+  {
 
-  this.x -= v.x;
-  this.y -= v.y;
-  this.z -= v.z;
-  return this;
+    this.x = v1.x * v2.x;
+    this.y = v1.y * v2.y;
+    this.z = v1.z * v2.z;
+    return this;
 
-}
-// Kakezan(multiplication) method
-Vec3.prototype.mul = function( v1, v2 )
-{
+  }
+  // nijo(Square) method
+  squ( v )
+  {
+    this.x = v.x * v.x;
+    this.y = v.y * v.y;
+    this.z = v.z * v.z
+    return this;
 
-  this.x = v1.x * v2.x;
-  this.y = v1.y * v2.y;
-  this.z = v1.z * v2.z;
-  return this;
+  }
+  // Sum method
+  sum()
+  {
 
-}
-// nijo(Square) method
-Vec3.prototype.squ = function( v )
-{
-  this.x = v.x * v.x;
-  this.y = v.y * v.y;
-  this.z = v.z * v.z
-  return this;
+    return this.x + this.y + this.z;
 
-}
-// Sum method
-Vec3.prototype.sum = function()
-{
+  }
 
-  return this.x + this.y + this.z;
+  // min method
+  min()
+  {
 
-}
+    var min;
 
-// min method
-Vec3.prototype.min = function()
-{
+    min = this.x;
 
-  var min;
+    if(min > this.y)
+    {min = this.y;}
 
-  min = this.x;
+    if(min > this.z)
+    {min = this.z;}
 
-  if(min > this.y)
-  {min = this.y;}
+    return min;
 
-  if(min > this.z)
-  {min = this.z;}
+  }
 
-  return min;
+  // max method
+  max()
+  {
+    var max;
 
-}
+    max = this.x;
 
-// max method
-Vec3.prototype.max = function()
-{
-  var max;
+    if(max < this.y)
+    {max = this.y;}
 
-  max = this.x;
+    if(max < this.z)
+    {max = this.z;}
 
-  if(max < this.y)
-  {max = this.y;}
+    return max;
 
-  if(max < this.z)
-  {max = this.z;}
+  }
 
-  return max;
+  // mid method
+  mid()
+  {  var mid;
+    if(this.x != this.min && this.x != this.max)
+    {mid = this.x;}
 
-}
+    if(this.y != this.min && this.y != this.max)
+    {mid = this.y;}
 
-// mid method
-Vec3.prototype.mid = function()
-{  var mid;
-  if(this.x != this.min && this.x != this.max)
-  {mid = this.x;}
+    if(this.z != this.min && this.z != this.max)
+    {mid = this.z;}
 
-  if(this.y != this.min && this.y != this.max)
-  {mid = this.y;}
+    return mid;
 
-  if(this.z != this.min && this.z != this.max)
-  {mid = this.z;}
-
-  return mid;
+  }
 
 }

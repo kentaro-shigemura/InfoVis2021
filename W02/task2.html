@@ -6,21 +6,21 @@
 
 </head>
 <body>
-
+    <form name="keisan">
+  a<input type="text" value="0">b
+    <input type="text" value="0">c
+    <input type="text" value="0"><br>
+      <input type="button" value="open" onclick="min_max_mid()">
 <script src="vec3.js"></script>
 <script>
-
-var x = 3, y = 17, z = 6; // (input values)
-var v = new Vec3( x, y, z );
+function min_max_mid()
+{
+var v = new Vec3( parseInt(document.keisan.elements[0].value), parseInt(document.keisan.elements[1].value), parseInt(document.keisan.elements[2].value) );
 var min = v.min(); // 3 (output value)
 var mid = v.mid(); // 6 (output value)
 var max = v.max(); // 17 (output value)
-document.write( "x = " + x + "<BR>");
-document.write( "y = " + y + "<BR>");
-document.write( "z = " + z + "<BR>");
-document.write( "min = " + min + "<BR>");
-document.write( "mid = " + mid + "<BR>");
-document.write( "max = " + max + "<BR>");
+alert("min = " + min + ", mid = " + mid + ", max = " + max );
+}
 
 </script>
 
