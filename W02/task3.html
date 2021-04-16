@@ -9,7 +9,7 @@
 
   <form name="keisan">
 <br>
-面積を計算します．
+Triangle area calculation. Please specify three seats.
 x0<input type="text" value="0">y0
   <input type="text" value="0">z0
   <input type="text" value="0"><br>
@@ -19,4 +19,31 @@ x0<input type="text" value="0">y0
     x2<input type="text" value="0">y2
       <input type="text" value="0">z2
       <input type="text" value="0"><br>
-  <input type="button" value="
+  <input type="button" value="Calculation" onclick="menseki()">
+  </form>
+
+<script src="vec3.js"></script>
+<script>
+function menseki()
+{
+  var v1 = new Vec3( parseInt(document.keisan.elements[0].value), parseInt(document.keisan.elements[1].value), parseInt(document.keisan.elements[2].value) );
+  var v2 = new Vec3( parseInt(document.keisan.elements[3].value), parseInt(document.keisan.elements[4].value), parseInt(document.keisan.elements[5].value) );
+  var v3 = new Vec3( parseInt(document.keisan.elements[6].value), parseInt(document.keisan.elements[7].value), parseInt(document.keisan.elements[8].value) );
+  var v4 = new Vec3( 0, 0, 0 );//計算用1
+  var v5 = new Vec3( 0, 0, 0 );//計算用2
+  var v6 = new Vec3( 0, 0, 0 );//計算用3
+  var v12 = v2.sub( v1 );//ベクトル1
+  var v13 = v3.sub( v1 );//ベクトル2
+
+  var v12_13 = v4.mul( v12, v13 );//各要素同士の掛け算=>計算用1
+  var v12_2 = v5.squ( v12 );//各要素の二乗
+  var v13_2 = v6.squ( v13 );//各要素の二乗
+  var s_2 = v12_2.sum() * v13_2.sum() - Math.pow(v12_13.sum(),2)
+  var s = Math.sqrt(s_2) / 2
+  alert("Area of Triangle　is " + s);
+}
+</script>
+
+</body>
+
+</html>
