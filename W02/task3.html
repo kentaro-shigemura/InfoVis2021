@@ -1,13 +1,15 @@
 <html>
 
 <head>
-
+<meta http-equiv="content-type" charset="shift_jis">
 <title>W02: task 3</title>
 
 </head>
 <body>
+
   <form name="keisan">
-  �O�p�`�̖ʐόv�Z�D3�̍��\���w�肵�Ă��������D<br>
+<br>
+�ʐς��v�Z���܂��D
 x0<input type="text" value="0">y0
   <input type="text" value="0">z0
   <input type="text" value="0"><br>
@@ -17,31 +19,4 @@ x0<input type="text" value="0">y0
     x2<input type="text" value="0">y2
       <input type="text" value="0">z2
       <input type="text" value="0"><br>
-  <input type="button" value="�v�Z" onclick="menseki()">
-  </form>
-
-<script src="vec3.js"></script>
-<script>
-function menseki()
-{
-  var v1 = new Vec3( parseInt(document.keisan.elements[0].value), parseInt(document.keisan.elements[1].value), parseInt(document.keisan.elements[2].value) );
-  var v2 = new Vec3( parseInt(document.keisan.elements[3].value), parseInt(document.keisan.elements[4].value), parseInt(document.keisan.elements[5].value) );
-  var v3 = new Vec3( parseInt(document.keisan.elements[6].value), parseInt(document.keisan.elements[7].value), parseInt(document.keisan.elements[8].value) );
-  var v4 = new Vec3( 0, 0, 0 );//�v�Z�p1
-  var v5 = new Vec3( 0, 0, 0 );//�v�Z�p2
-  var v6 = new Vec3( 0, 0, 0 );//�v�Z�p3
-  var v12 = v2.sub( v1 );//�x�N�g��
-  var v13 = v3.sub( v1 );//�x�N�g��
-
-  var v12_13 = v4.mul( v12, v13 );//�e�v�f�ǂ����̊|���Z���v�Z�p1�Ɋi�[
-  var v12_2 = v5.squ( v12 );//�e�v�f���恨�v�Z�p2�Ɋi�[
-  var v13_2 = v6.squ( v13 );//�e�v�f���恨�v�Z�p3�Ɋi�[
-  var s_2 = v12_2.sum() * v13_2.sum() - Math.pow(v12_13.sum(),2)
-  var s = Math.sqrt(s_2) / 2
-  alert("�ʐς�" + s);
-}
-</script>
-
-</body>
-
-</html>
+  <input type="button" value="
