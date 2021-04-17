@@ -58,52 +58,66 @@ class Vec3
   // min method
   min()
   {
-
-    var min;
-
-    min = this.x;
-
-    if(min > this.y)
-    {min = this.y;}
-
-    if(min > this.z)
-    {min = this.z;}
-
-    return min;
-
+    if(this.x >= this.y)
+    {
+      if(this.x <= this.z)
+      {
+        return this.y;
+      }else if(this.y <= this.z){
+        return this.y;
+      }else{
+        return this.z;
+      }
+    }else if(this.y <= this.z){
+      return this.x
+    }else if(this.x <= this.z){
+      return this.x
+    }else{
+      return this.z;
+    }
   }
 
   // max method
   max()
   {
-    var max;
-
-    max = this.x;
-
-    if(max < this.y)
-    {max = this.y;}
-
-    if(max < this.z)
-    {max = this.z;}
-
-    return max;
-
+    if(this.x >= this.y)
+    {
+      if(this.y >= this.z)
+      {
+        return this.x;
+      }else if(this.z <= this.x){
+        return this.x;
+      }else{
+        return this.z;
+      }
+    }else if(this.x >= this.z){
+      return this.y
+    }else if(this.z <= this.y){
+      return this.y
+    }else{
+      return this.z;
+    }
   }
 
   // mid method
   mid()
-  {  var mid;
-    if(this.x != this.min && this.x != this.max)
-    {mid = this.x;}
-
-    if(this.y != this.min && this.y != this.max)
-    {mid = this.y;}
-
-    if(this.z != this.min && this.z != this.max)
-    {mid = this.z;}
-
-    return mid;
-
+  {
+    if(this.x >= this.y)
+    {if(this.y >= this.z)
+      {
+        return this.y;
+      }else if(this.x <= this.z){
+        return this.x;
+      }else{
+        return this.z;
+      }
+    }else if(this.y <= this.z)//x<y<z
+    {
+      return this.y;
+    }else if(this.z <= this.x){
+      return this.x
+    }else{
+      return this.z;
+    }
   }
-
 }
