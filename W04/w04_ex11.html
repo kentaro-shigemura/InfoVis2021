@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>W04: Example 11</title>
+    </head>
+    <body>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script>
+	 var value = [100,50,80,50,200];
+	 var padding = 10;//横軸
+	 var height = 20;//縦軸
+	 var svg = d3.select("body").append("svg");
+	 svg.selectAll("rect").data(value).enter().append("rect")
+	    .attr("x", padding)
+	    .attr("y", function(d,i){ return padding + i * ( height + padding ); })//指定された配列がd,番号がi)
+	    .attr("width", function(d){ return d; })
+	    .attr("height", height);
+	</script>
+    </body>
+</html>
