@@ -3,25 +3,48 @@
         <title>W04: Example 12</title>
     </head>
     <body>
+  Number of people infected with COVID19 on April 22.<br> 
 	<script src="https://d3js.org/d3.v4.min.js"></script>
 	<script>
-	 var data = [
-	     {width: 100, color: 'red'},
-	     {width: 50,  color: 'green'},
-	     {width: 80,  color: 'blue'} ];
+  // SVG領域の設定
+var width = 600; // グラフの幅
+var height = 400; // グラフの高さ
+// SVG設定
+var svg = d3.select("body")
+          .append("svg")
+          .attr("width", width)
+          .attr("height", height);
+   var start = 100;
+  var tstart = 10;
+
 	 var padding = 10;
-	 var height = 20;
+	 var height = 40;
    d3.csv("https://kentaro-shigemura.github.io/InfoVis2021/W04/w04_task2.csv", draw );
    function draw(data){
-       svg.selectAll("rect")
-    .data(data)
-          .enter()
-          .append("rect")
-          .attr("x", padding)
-          .attr("width", function(d){ return d.width; })
-    	    .attr("height", height)
-          .style("fill", function(d){ return d.color; });
-   }
+     svg.selectAll("rect")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("x", start)
+        .attr("y", function(d,i){ return padding + i * ( height + padding ); })//d波線等の配列を読み込む
+        .attr("width", function(d){ return d.width; })
+        .attr("height", height)
+        .style("fill", function(d){ return d.color; });
+     svg.selectAll("text#text")
+       .data(data)
+       .enter()
+       .append("text")
+       .attr("x", tstart)  // x座標
+       .attr("y", function(d,i){ return  height + i * ( height + padding ); }) // y座標
+       .text(function(d){ return d.text; });
+      svg.selectAll("text#value")
+       .data(data)
+       .enter()
+       .append("text")
+       .attr("x", function(d){ return tstart + start + parseInt(d.width); })  // x座標
+       .attr("y", function(d,i){ return height + i * ( height + padding ); }) // y座標
+       .text(function(d){ return d.value; });  // プレーンテキスト
+        }
 	</script>
     </body>
 </html>
