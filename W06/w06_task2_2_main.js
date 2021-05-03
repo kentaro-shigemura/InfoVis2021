@@ -55,7 +55,7 @@ function ShowScatterPlot( data ) {
         .attr("transform", "rotate(-90)")
         .attr("font-weight", "middle")
         .attr("font-size", "10pt")
-        .text("temperature[degree]");
+        .text("temperature");
 
         svg.append('g')
             .append("text")
