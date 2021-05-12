@@ -1,28 +1,28 @@
-d3.csv("https://vizlab-kobe-lecture.github.io/InfoVis2021/W04/data.csv")
+d3.csv("https://kentaro-shigemura.github.io/InfoVis2021/W08/task/data_8_0.csv")
     .then( data => {
         data.forEach( d => { d.x = +d.x; d.y = +d.y; });
 
         var config = {
             parent: '#drawing_region',
             width: 256,
-            height: 256,
-            margin: {top:10, right:10, bottom:20, left:10}
+            height: 128,
+            margin: {top:10, right:10, bottom:20, left:60}
         };
 
-        const scatter_plot = new ScatterPlot( config, data );
+        const BarChart = new BarChart( config, data );
         scatter_plot.update();
     })
     .catch( error => {
         console.log( error );
     });
 
-class ScatterPlot {
+class BarChart {
 
     constructor( config, data ) {
         this.config = {
             parent: config.parent,
             width: config.width || 256,
-            height: config.height || 256,
+            height: config.height || 128,
             margin: config.margin || {top:10, right:10, bottom:10, left:10}
         }
         this.data = data;
@@ -43,9 +43,10 @@ class ScatterPlot {
         self.inner_height = self.config.height - self.config.margin.top - self.config.margin.bottom;
 
         self.xscale = d3.scaleLinear()
+            .domain([0, d3.max(data, d => d.value)])
             .range( [0, self.inner_width] );
 
-        self.yscale = d3.scaleLinear()
+        self.yscale = d3.scaleBand()
             .range( [0, self.inner_height] );
 
         self.xaxis = d3.axisBottom( self.xscale )
