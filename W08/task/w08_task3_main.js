@@ -1,4 +1,4 @@
-d3.csv("https://kentaro-shigemura.github.io/InfoVis2021/W08/task/data_8_0.csv")
+d3.csv("https://kentaro-shigemura.github.io/InfoVis2021/W08/task/data_8_2.csv")
     .then( data => {
       data.forEach( d => { d.value = +d.value;});
         var config = {
@@ -60,8 +60,8 @@ class BarChart {
             .enter()
             .append('path')
             .attr('d', self.arc)
-            .attr('fill', 'none')
-            .attr('stroke', 'black')
+            .attr('fill', d => d.color )
+            .attr('stroke', 'white')
             .style('stroke-width', '2px');
     }
 }
