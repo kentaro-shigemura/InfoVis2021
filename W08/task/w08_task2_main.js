@@ -45,7 +45,7 @@ class BarChart {
             self.area = d3.area()
                 .x( d => d.x )
                 .y1( d => d.y )
-                .y0( 0 );
+                .y0( d3.max(self.data, d => d.y ) + 10 );
 
         }
 
