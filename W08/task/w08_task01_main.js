@@ -3,7 +3,7 @@ d3.csv("https://kentaro-shigemura.github.io/InfoVis2021/W08/task/data_8_0.csv")
       data.forEach( d => { d.value = +d.value;});
         var config = {
             parent: '#drawing_region',
-            width: 256,
+            width: 900,
             height: 200,
             margin: {top:10, right:10, bottom:20, left:60}
         };
@@ -98,6 +98,6 @@ class BarChart {
             .attr("y",  self.config.height - 5)
             .attr("font-weight", "middle")
             .attr("font-size", "10pt")
-            .text("Monthly average temperature in Kobe");
+            .text("Number of people infected with COVID19 on May 16.");
     }
 }
