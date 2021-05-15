@@ -60,7 +60,7 @@ class BarChart {
             .enter()
             .append('path')
             .attr('d', self.arc)
-            .attr('fill', d => d.color )
+            .style("fill", d => d.color)
             .attr('stroke', 'white')
             .style('stroke-width', '2px');
     }
