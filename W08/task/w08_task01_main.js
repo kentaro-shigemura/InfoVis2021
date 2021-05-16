@@ -1,4 +1,4 @@
-d3.csv("https://kentaro-shigemura.github.io/InfoVis2021/W08/task/data_8_0.csv")
+d3.csv("https://kentaro-shigemura.github.io/InfoVis2021/W08/task/data_8_2.csv")
     .then( data => {
       data.forEach( d => { d.value = +d.value;});
         var config = {
@@ -82,7 +82,8 @@ class BarChart {
             .attr("x", 0)
             .attr("y", d => self.yscale( d.label ))
             .attr("width", d => self.xscale(d.value))
-            .attr("height", self.yscale.bandwidth());
+            .attr("height", self.yscale.bandwidth())
+            .style("fill", d => d.color);
 
         self.xaxis_group
             .call( self.xaxis );

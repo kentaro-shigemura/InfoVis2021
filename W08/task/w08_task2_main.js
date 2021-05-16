@@ -1,4 +1,4 @@
-d3.csv("https://kentaro-shigemura.github.io/InfoVis2021/W06/data6.csv")
+d3.csv("https://kentaro-shigemura.github.io/InfoVis2021/W08/task/data_8_1.csv")
     .then( data => {
       data.forEach( d => { d.value = +d.value;});
         var config = {

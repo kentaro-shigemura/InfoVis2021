@@ -42,7 +42,7 @@ class BarChart {
                 .value( d => d.value );
 
             self.arc = d3.arc()
-                  .innerRadius(self.config.radius/2)
+                  .innerRadius(self.config.radius/)
                   .outerRadius(self.config.radius);
 
     }
@@ -60,8 +60,8 @@ class BarChart {
             .enter()
             .append('path')
             .attr('d', self.arc)
-            .style("fill", d => d.color)
-            .attr('stroke', 'white')
+            .attr("fill", d => d.data.color)
+            .attr('stroke', 'black')
             .style('stroke-width', '2px');
     }
 }
