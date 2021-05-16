@@ -7,8 +7,8 @@ d3.csv("https://kentaro-shigemura.github.io/InfoVis2021/W08/task/data_8_1.csv")
             margin: {top:10, right:10, bottom:20, left:60}
         };
 
-        const BarChart = new BarChart( config, data );
-        BarChart.update();
+        const barChart = new BarChart( config, data );
+        barChart.update();
     })
     .catch( error => {
         console.log( error );
@@ -29,6 +29,13 @@ class BarChart {
 
     init() {//描画領域の初期化
         let self = this;
+
+        self.xscale = d3.scaleLinear()
+            .range( [0, self.inner_width] );
+
+        self.yscale = d3.scaleLinear()
+            .range( [0, self.inner_height] );
+
 
         self.svg = d3.select( self.config.parent )
             .attr('width', self.config.width)
@@ -55,6 +62,14 @@ class BarChart {
 
     render() {
         let self = this;
+
+        self.chart.selectAll("circle")
+            .data(self.data)
+            .enter()
+            .append("circle")
+            .attr("cx", d => self.xscale( d.x ) )
+            .attr("cy", d => self.yscale( d.y ) )
+            .attr("r", 5);
 
         self.svg.append('path')
             .attr('d', area(self.data))

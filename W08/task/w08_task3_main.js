@@ -42,7 +42,7 @@ class BarChart {
                 .value( d => d.value );
 
             self.arc = d3.arc()
-                  .innerRadius(self.config.radius/)
+                  .innerRadius(self.config.radius/2)
                   .outerRadius(self.config.radius);
 
     }

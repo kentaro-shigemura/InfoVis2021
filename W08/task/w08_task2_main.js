@@ -61,7 +61,7 @@ class BarChart {
             self.svg.append('path')
                 .attr('d', self.area(self.data))
                 .attr('stroke', 'black')
-                .attr('fill', 'black');
+                .attr('fill', 'blue');
 
         }
 }
