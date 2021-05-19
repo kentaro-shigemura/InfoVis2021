@@ -1,6 +1,6 @@
-label,value,color
-Tokyo,854,orange
-Ohsaka,576,red
-Kanagawa,340,yellow
-Hyogo,314,blue
-Kyoto,165,green
+label,value,color,number
+Tokyo,854,orange,1
+Ohsaka,576,red,2
+Kanagawa,340,yellow,3
+Hyogo,314,blue,4
+Kyoto,165,green,5
