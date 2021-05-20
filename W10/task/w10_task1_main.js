@@ -1,5 +1,7 @@
 d3.csv("https://kentaro-shigemura.github.io/InfoVis2021/W10/task/data_8_2.csv")
     .then( data => {
+
+
       data.forEach( d => { d.value = +d.value;});
         var config = {
             parent: '#drawing_region',
@@ -10,10 +12,29 @@ d3.csv("https://kentaro-shigemura.github.io/InfoVis2021/W10/task/data_8_2.csv")
         console.log("ada");
         const barChart = new BarChart( config, data );
         barChart.update();
+
+        d3.select('#reverse')
+        .on('click', d => {
+            data.reverse();
+            barChart.update(data);
+        });
+
+        d3.select('#sort')
+        .on('click', d => {
+            data.sort(function(a, b) {
+    if(a.value < b.value) return 1;
+    if(a.value > b.value) return -1;
+    return 0;
+  });
+            barChart.update(data);
+      });
+
     })
     .catch( error => {
         console.log( error );
     });
+
+
 
 class BarChart {
 
@@ -42,11 +63,9 @@ class BarChart {
         self.inner_height = self.config.height - self.config.margin.top - 2 * self.config.margin.bottom;
 
         self.xscale = d3.scaleLinear()
-            .domain([0, d3.max( self.data, d => d.value )])
             .range( [0, self.inner_width] );
 
         self.yscale = d3.scaleBand()
-            .domain(self.data.map( d => d.label))
             .range( [0, self.inner_height] )
             .paddingInner(0.1);
 
@@ -69,6 +88,11 @@ class BarChart {
 
     update() {
         let self = this;
+        const xmin = 0;
+        const xmax = d3.max( self.data, d => d.value )
+        self.xscale.domain( [xmin, xmax] );
+
+        self.yscale.domain(self.data.map( d => d.label))
         self.render();
     }
 
@@ -77,8 +101,8 @@ class BarChart {
 
         self.chart.selectAll("rect")
             .data(self.data)
-            .enter()
-            .append("rect")
+            .join('rect')
+            .transition().duration(1000)
             .attr("x", 0)
             .attr("y", d => self.yscale( d.label ))
             .attr("width", d => self.xscale(d.value))
