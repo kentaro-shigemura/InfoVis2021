@@ -41,8 +41,8 @@ d3.csv("https://kentaro-shigemura.github.io/InfoVis2021/W10/task/data_8_2.csv")
         d3.select('#back')
         .on('click', d => {
             data.sort(function(a, b) {
-        if(a.number < b.number) return 1;
-        if(a.number > b.number) return -1;
+        if(a.number < b.number) return -1;
+        if(a.number > b.number) return 1;
         return 0;
         });
             barChart.update(data);
