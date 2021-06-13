@@ -12,6 +12,10 @@ class BarChart2 {
 
     init() {//描画領域の初期化
         let self = this;
+        //let str1 = 'SevenEleven';
+        //let str2 = 'FamilyMart';
+        //let str3 = 'Lawson';
+
 
         self.svg = d3.select( self.config.parent )
             .attr('width', self.config.width)
@@ -44,21 +48,34 @@ class BarChart2 {
 
         self.text_group = self.svg.append('g');
 
+        self.text_group
+             .append("text")
+             .attr("fill", "black")
+             .attr("text-anchor", "middle")
+             .attr("x", (self.config.width / 2) )
+             .attr("y",  self.config.height - 5)
+             .attr("font-weight", "middle")
+             .attr("font-size", "10pt")
+             .text("The number of convenience stores in each prefecture");
+
 
     }
 
-    update() {
+    update(arrayData) {
         let self = this;
         const xmin = 0;
         const xmax = d3.max( self.data, d => d.seven )
         self.xscale.domain( [xmin, xmax] );
         self.yscale.domain(self.data.map( d => d.Prefectures))
-        self.render();
+        self.render(arrayData);
     }
 
-    render() {
+    render(arrayData) {
         let self = this;
-        self.chart.selectAll("rect#a")
+
+        if (arrayData.includes('SevenEleven') ||arrayData.length === 0)
+            {self.chart
+            .selectAll("rect#a")
             .data(self.data)
             .join('rect')
             .transition().duration(1000)
@@ -67,8 +84,12 @@ class BarChart2 {
             .attr("y", d => self.yscale( d.Prefectures ))
             .attr("width", d => self.xscale(d.seven))
             .attr("height", self.yscale.bandwidth()/3)
-            .attr('id', 'a');;
-
+            .attr('id', 'a');
+          }else{
+            self.chart.selectAll('rect#a').remove();
+          }
+          if (arrayData.includes('FamilyMart')||arrayData.length === 0)
+          {
         self.chart.selectAll("rect#b")
                 .data(self.data)
                 .join('rect')
@@ -79,8 +100,11 @@ class BarChart2 {
                 .attr("width", d => self.xscale(d.family))
                 .attr("height", self.yscale.bandwidth()/3)
                 .attr('id', 'b');
-
-
+              }else{
+                self.chart.selectAll('rect#b').remove();
+              }
+              if (arrayData.includes('Lawson') ||arrayData.length === 0)
+              {
         self.chart.selectAll("rect#c")
                     .data(self.data)
                     .join('rect')
@@ -90,7 +114,10 @@ class BarChart2 {
                     .attr("y", d => self.yscale( d.Prefectures ) + 2*self.yscale.bandwidth()/3)
                     .attr("width", d => self.xscale(d.Lawson))
                     .attr("height", self.yscale.bandwidth()/3)
-                    .attr('id', 'c');;
+                    .attr('id', 'c');
+                  }else{
+                    self.chart.selectAll('rect#c').remove();
+                  }
 
         self.xaxis_group
             .call( self.xaxis );
@@ -98,14 +125,5 @@ class BarChart2 {
         self.yaxis_group
             .call( self.yaxis );
 
-       self.text_group
-            .append("text")
-            .attr("fill", "black")
-            .attr("text-anchor", "middle")
-            .attr("x", (self.config.width / 2) )
-            .attr("y",  self.config.height - 5)
-            .attr("font-weight", "middle")
-            .attr("font-size", "10pt")
-            .text("Number of conveniencestore in 2020.");
     }
 }

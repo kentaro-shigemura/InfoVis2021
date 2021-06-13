@@ -57,12 +57,11 @@ class BarChart {
 
         self.yaxis_group = self.chart.append('g');
 
-        self.label_x=['seven', 'family', 'Lawson'];
 
         const xlabel_space = 40;
         self.svg.append('text')
             .style('font-size', '12px')
-            .attr('x', self.config.width / 2)
+            .attr('x', self.config.width / 2 - 100)
             .attr('y', self.inner_height + self.config.margin.top + xlabel_space)
             .text( self.config.xlabel );
 
@@ -110,7 +109,7 @@ class BarChart {
                 else {
                     filter.push( d.label );
                 }
-                Filter();
+                Filter(filter);
                 d3.select(this).classed('active', !is_active);
             });
 
