@@ -111,6 +111,21 @@ class BarChart {
                 }
                 Filter(filter);
                 d3.select(this).classed('active', !is_active);
+            })
+            .on('mouseover', (e,d) => {
+            d3.select('#tooltip')
+              .style('opacity', 1)
+              .html(`<div class="tooltip-label">(number_of_store)</div>( ${d.value})`);
+      })
+            .on('mousemove', (e) => {
+                const padding = 10;
+                d3.select('#tooltip')
+                    .style('left', (e.pageX + padding) + 'px')
+                    .style('top', (e.pageY + padding) + 'px');
+            })
+            .on('mouseleave', () => {
+                d3.select('#tooltip')
+                    .style('opacity', 0);
             });
 
         self.xaxis_group
