@@ -16,6 +16,16 @@ class BarChart {
     init() {
         let self = this;
 
+        const seven_value = d3.sum( self.data, d => d.seven);
+        const family_value = d3.sum( self.data, d => d.family);
+        const Lawson_value = d3.sum( self.data, d => d.Lawson);
+
+        self.data2 = [
+    {label:'SevenEleven', value:seven_value ,color: 'orange'},
+    {label:'FamilyMart', value:family_value, color: 'green'},
+    {label:'Lawson', value:Lawson_value, color: 'blue'}
+];
+
         self.svg = d3.select(self.config.parent)
             .attr('width', self.config.width)
             .attr('height', self.config.height);
@@ -35,7 +45,7 @@ class BarChart {
             .range([self.inner_height, 0]);
 
         self.xaxis = d3.axisBottom(self.xscale)
-            .ticks(['setosa','versicolor','virginica'])
+            .ticks(['SevenEleven','Familymart','Lawson'])
             .tickSizeOuter(0);
 
         self.yaxis = d3.axisLeft(self.yscale)
@@ -46,6 +56,8 @@ class BarChart {
             .attr('transform', `translate(0, ${self.inner_height})`);
 
         self.yaxis_group = self.chart.append('g');
+
+        self.label_x=['seven', 'family', 'Lawson'];
 
         const xlabel_space = 40;
         self.svg.append('text')
@@ -68,18 +80,11 @@ class BarChart {
     update() {
         let self = this;
 
-        const data_map = d3.rollup( self.data, v => v.length, d => d.species );
-        self.aggregated_data = Array.from( data_map, ([key,count]) => ({key,count}) );
-
-        self.cvalue = d => d.key;
-        self.xvalue = d => d.key;
-        self.yvalue = d => d.count;
-
-        const items = self.aggregated_data.map( self.xvalue );
+        //const items = self.data.map( self.xvalue );
+        const items = self.data2.map( d => d.label );
         self.xscale.domain(items);
-
         const ymin = 0;
-        const ymax = d3.max( self.aggregated_data, self.yvalue );
+        const ymax = d3.max( self.data2, d => d.value  );
         self.yscale.domain([ymin, ymax]);
 
         self.render();
@@ -89,21 +94,21 @@ class BarChart {
         let self = this;
 
         self.chart.selectAll(".bar")
-            .data(self.aggregated_data)
+            .data(self.data2)
             .join("rect")
             .attr("class", "bar")
-            .attr("x", d => self.xscale( self.xvalue(d) ) )
-            .attr("y", d => self.yscale( self.yvalue(d) ) )
+            .attr("x", d => self.xscale( d.label ) )
+            .attr("y", d => self.yscale( d.value ))
             .attr("width", self.xscale.bandwidth())
-            .attr("height", d => self.inner_height - self.yscale( self.yvalue(d) ))
-            .attr("fill", d => self.config.cscale( self.cvalue(d) ))
+            .attr("height", d => self.inner_height - self.yscale( d.value  ))
+            .style("fill", d => d.color)
             .on('click', function(ev,d) {
-                const is_active = filter.includes(d.key);
+                const is_active = filter.includes(d.label);
                 if ( is_active ) {
-                    filter = filter.filter( f => f !== d.key );
+                    filter = filter.filter( f => f !== d.label );
                 }
                 else {
-                    filter.push( d.key );
+                    filter.push( d.label );
                 }
                 Filter();
                 d3.select(this).classed('active', !is_active);
